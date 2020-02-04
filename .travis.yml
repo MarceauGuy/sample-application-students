@@ -7,10 +7,10 @@ addons:
 jobs:
   includes :
   - stage: test
-  script : 
+    script : 
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=MarceauGuy_sample-application-students
   - stage : build
-  script :  
+    script :  
     - docker build -t marceauguy/changelog ./sample-application-db-changelog-job
     - docker build -t marceauguy/httpserver ./sample-application-http-api-server
     - docker login -u $USR_DOCKR -p $PWD_DOCKR
