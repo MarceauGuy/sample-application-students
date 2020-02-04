@@ -1,4 +1,2 @@
 language : java
-jobs:
-  include:
-    script : nvm clean verify
+script : nvm clean verify
