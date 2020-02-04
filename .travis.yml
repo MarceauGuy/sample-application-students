@@ -4,12 +4,15 @@ addons:
     organization: "marceauguy"
     token:
       secure: $TOKEN # encrypted value of your token
-
-script : 
-  - 
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=MarceauGuy_sample-application-students
-  - docker build -t marceauguy/changelog ./sample-application-db-changelog-job
-  - docker build -t marceauguy/httpserver ./sample-application-http-api-server
-  - docker login -u $USR_DOCKR -p $PWD_DOCKR
-  - docker push marceauguy/changelog
-  - docker push marceauguy/httpserver
+jobs:
+  includes :
+  - stage: test
+  script : 
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=MarceauGuy_sample-application-students
+  - stage : build
+  script :  
+    - docker build -t marceauguy/changelog ./sample-application-db-changelog-job
+    - docker build -t marceauguy/httpserver ./sample-application-http-api-server
+    - docker login -u $USR_DOCKR -p $PWD_DOCKR
+    - docker push marceauguy/changelog
+    - docker push marceauguy/httpserver
