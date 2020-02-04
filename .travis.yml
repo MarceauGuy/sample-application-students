@@ -4,5 +4,5 @@ script :
   - docker build -t marceau/changelog ./sample-application-db-changelog-job
   - docker build -t marceau/httpserver ./sample-application-http-api-server
   - docker login -u $USR_DOCKR -p $PWD_DOCKR
-  - docker push marceau/changelog:marceau/changelog
-  - docker push marceau/httpserver:marceau/httpserver
+  - docker push marceauguy/changelog:marceau/changelog
+  - docker push marceauguy/httpserver:marceau/httpserver
